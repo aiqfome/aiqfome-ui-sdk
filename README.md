@@ -106,6 +106,8 @@ npm run build
 npm run storybook
 ```
 
+O repositório usa **Gitflow**: integração em **`develop`**, releases estáveis em **`main`**. Detalhes (feature / release / hotfix) em [CONTRIBUTING.md](./CONTRIBUTING.md).
+
 ## Publicação no npm (mantenedores)
 
 1. **Organização npm** — quem publica precisa ser membro da org [npmjs.com/org/aiqfome-org](https://www.npmjs.com/org/aiqfome-org) com permissão de publicação (ou criar a org em [npmjs.com/org/create](https://www.npmjs.com/org/create)).
