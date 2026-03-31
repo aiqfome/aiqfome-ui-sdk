@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "description": "Exemplo de listagem de pedidos consumindo @aiqfome/geraldo-ui (fonte local via Vite)",
+  "description": "Exemplo de listagem de pedidos consumindo @aiqfome-org/geraldo-ui (fonte local via Vite)",
   "scripts": {
     "dev": "vite",
     "build": "vite build",

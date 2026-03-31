@@ -1,6 +1,6 @@
 import { html, render } from 'lit';
-import '@aiqfome/geraldo-ui/tokens.css';
-import { defineGeraldoUI } from '@aiqfome/geraldo-ui';
+import '@aiqfome-org/geraldo-ui/tokens.css';
+import { defineGeraldoUI } from '@aiqfome-org/geraldo-ui';
 import './styles.css';
 
 defineGeraldoUI();

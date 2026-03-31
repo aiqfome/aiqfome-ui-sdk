@@ -1,5 +1,5 @@
 {
-  "name": "@aiqfome/geraldo-ui",
+  "name": "@aiqfome-org/geraldo-ui",
   "version": "0.1.1",
   "description": "Geraldo UI — Web Components design system for aiqfome (Lit + design tokens)",
   "type": "module",

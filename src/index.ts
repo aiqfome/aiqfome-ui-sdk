@@ -1,6 +1,6 @@
 /**
  * Geraldo UI — register all custom elements (idempotent).
- * Import `@aiqfome/geraldo-ui/tokens.css` once in your app root before components.
+ * Import `@aiqfome-org/geraldo-ui/tokens.css` once in your app root before components.
  *
  * Icons: use the default slot `icon` on button/badge or project SVGs from
  * [Material Symbols](https://fonts.google.com/icons) or [@mdi/js](https://pictogrammers.com/library/mdi/).

@@ -9,11 +9,11 @@ export default defineConfig({
   resolve: {
     alias: [
       {
-        find: '@aiqfome/geraldo-ui/tokens.css',
+        find: '@aiqfome-org/geraldo-ui/tokens.css',
         replacement: resolve(sdkRoot, 'src/tokens/geraldo-tokens.css'),
       },
       {
-        find: '@aiqfome/geraldo-ui',
+        find: '@aiqfome-org/geraldo-ui',
         replacement: resolve(sdkRoot, 'src/index.ts'),
       },
     ],

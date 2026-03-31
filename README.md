@@ -1,4 +1,4 @@
-# Geraldo UI (`@aiqfome/geraldo-ui`)
+# Geraldo UI (`@aiqfome-org/geraldo-ui`)
 
 SDK de **Web Components** (Lit + TypeScript) com tokens do guia **Geraldo** para produtos aiqfome. Publicável no npm; consumível em qualquer stack web (React, Vue, Svelte, HTML estático).
 
@@ -10,7 +10,7 @@ SDK de **Web Components** (Lit + TypeScript) com tokens do guia **Geraldo** para
 ## Instalação
 
 ```bash
-npm install @aiqfome/geraldo-ui lit
+npm install @aiqfome-org/geraldo-ui lit
 ```
 
 ## Uso rápido
@@ -21,8 +21,8 @@ npm install @aiqfome/geraldo-ui lit
 ### Vite / bundlers
 
 ```ts
-import '@aiqfome/geraldo-ui/tokens.css';
-import '@aiqfome/geraldo-ui';
+import '@aiqfome-org/geraldo-ui/tokens.css';
+import '@aiqfome-org/geraldo-ui';
 ```
 
 ### Fonte Ubuntu
@@ -48,8 +48,8 @@ Inclua no HTML (recomendado):
 ### React (exemplo)
 
 ```tsx
-import '@aiqfome/geraldo-ui/tokens.css';
-import '@aiqfome/geraldo-ui';
+import '@aiqfome-org/geraldo-ui/tokens.css';
+import '@aiqfome-org/geraldo-ui';
 
 export function Example() {
   return <geraldo-button variant="outline">OK</geraldo-button>;
@@ -60,10 +60,10 @@ Declare os tipos JSX se necessário (ou use `react-jsx` com `IntrinsicElements`)
 
 ## Registro dos custom elements
 
-Importar `@aiqfome/geraldo-ui` carrega os módulos dos componentes; o decorator `@customElement` do Lit registra cada tag. Para garantir registro explícito (idempotente), por exemplo após code-splitting parcial:
+Importar `@aiqfome-org/geraldo-ui` carrega os módulos dos componentes; o decorator `@customElement` do Lit registra cada tag. Para garantir registro explícito (idempotente), por exemplo após code-splitting parcial:
 
 ```ts
-import { defineGeraldoUI } from '@aiqfome/geraldo-ui';
+import { defineGeraldoUI } from '@aiqfome-org/geraldo-ui';
 defineGeraldoUI();
 ```
 
@@ -91,7 +91,7 @@ Defina no ancestral (ex.: `<html data-geraldo-theme="dark">`) ou use a classe `.
 
 ## App de exemplo (pedidos)
 
-Listagem de pedidos em [examples/pedidos-app](examples/pedidos-app) usando **todos** os componentes do SDK. O Vite aponta `@aiqfome/geraldo-ui` para o código-fonte do repositório (alias), sem precisar publicar o pacote.
+Listagem de pedidos em [examples/pedidos-app](examples/pedidos-app) usando **todos** os componentes do SDK. O Vite aponta `@aiqfome-org/geraldo-ui` para o código-fonte do repositório (alias), sem precisar publicar o pacote.
 
 ```bash
 npm run example:pedidos
@@ -108,13 +108,13 @@ npm run storybook
 
 ## Publicação no npm (mantenedores)
 
-1. **Organização npm** — quem publica precisa ser membro da org [npmjs.com/org/aiqfome](https://www.npmjs.com/org/aiqfome) com permissão de publicação (ou criar a org em [npmjs.com/org/create](https://www.npmjs.com/org/create)).
+1. **Organização npm** — quem publica precisa ser membro da org [npmjs.com/org/aiqfome-org](https://www.npmjs.com/org/aiqfome-org) com permissão de publicação (ou criar a org em [npmjs.com/org/create](https://www.npmjs.com/org/create)).
 2. **Login** — `npm login` (ou token de automação no CI; ver workflow em `.github/workflows/publish.yml`).
 3. **Validar artefato** — `npm run build` e conferir `dist/index.js`, `dist/index.d.ts`, `dist/geraldo-tokens.css`; opcionalmente `npm pack --dry-run`.
 4. **Versão** — `npm version patch|minor|major` (ou editar `version` em `package.json`) antes de publicar uma release nova.
 5. **Publicar** — `npm publish`. O pacote usa `publishConfig.access: "public"`; não é obrigatório passar `--access public` manualmente.
 
-Publicação automática: ao **publicar uma release** no GitHub, configure o secret `NPM_TOKEN` (token **Automation** da npm com permissão de publish no escopo `@aiqfome`) para o workflow publicar o pacote.
+Publicação automática: ao **publicar uma release** no GitHub, configure o secret `NPM_TOKEN` (token **Automation** da npm com permissão de publish no escopo `@aiqfome-org`) para o workflow publicar o pacote.
 
 ## Licença
 
