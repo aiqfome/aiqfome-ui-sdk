@@ -2,6 +2,8 @@
 
 SDK de **Web Components** (Lit + TypeScript) com tokens do guia **Geraldo** para produtos aiqfome. Publicável no npm; consumível em qualquer stack web (React, Vue, Svelte, HTML estático).
 
+![Prévia: smoke test com o pacote via npm — botões, card, formulário, rádios e badges](docs/smoke-test-preview.png)
+
 ## Requisitos
 
 - Node 18+
