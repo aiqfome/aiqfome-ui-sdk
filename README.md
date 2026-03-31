@@ -106,12 +106,15 @@ npm run build
 npm run storybook
 ```
 
-## Publicação no npm (checklist)
+## Publicação no npm (mantenedores)
 
-1. Ajuste `repository.url` em `package.json` para o Git real da org.
-2. Confirme o escopo `@aiqfome` no npm (login `npm login`, org com permissão de publish).
-3. `npm run build` e valide `dist/` (`index.js`, `index.d.ts`, `geraldo-tokens.css`).
-4. `npm publish --access public` (pacotes com escopo exigem `--access public` na primeira vez, se for público).
+1. **Organização npm** — quem publica precisa ser membro da org [npmjs.com/org/aiqfome](https://www.npmjs.com/org/aiqfome) com permissão de publicação (ou criar a org em [npmjs.com/org/create](https://www.npmjs.com/org/create)).
+2. **Login** — `npm login` (ou token de automação no CI; ver workflow em `.github/workflows/publish.yml`).
+3. **Validar artefato** — `npm run build` e conferir `dist/index.js`, `dist/index.d.ts`, `dist/geraldo-tokens.css`; opcionalmente `npm pack --dry-run`.
+4. **Versão** — `npm version patch|minor|major` (ou editar `version` em `package.json`) antes de publicar uma release nova.
+5. **Publicar** — `npm publish`. O pacote usa `publishConfig.access: "public"`; não é obrigatório passar `--access public` manualmente.
+
+Publicação automática: ao **publicar uma release** no GitHub, configure o secret `NPM_TOKEN` (token **Automation** da npm com permissão de publish no escopo `@aiqfome`) para o workflow publicar o pacote.
 
 ## Licença
 

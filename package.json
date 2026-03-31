@@ -42,7 +42,14 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/aiqfome/geraldo-ui.git"
+    "url": "git+https://github.com/aiqfome/aiqfome-ui-sdk.git"
+  },
+  "homepage": "https://github.com/aiqfome/aiqfome-ui-sdk#readme",
+  "bugs": {
+    "url": "https://github.com/aiqfome/aiqfome-ui-sdk/issues"
+  },
+  "publishConfig": {
+    "access": "public"
   },
   "peerDependencies": {
     "lit": "^3.2.0"
