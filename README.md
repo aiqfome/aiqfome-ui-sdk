@@ -15,6 +15,39 @@ SDK de **Web Components** (Lit + TypeScript) com tokens do guia **Geraldo** para
 npm install @aiqfome-org/geraldo-ui lit
 ```
 
+## Autenticação Magalu / Geraldo (subpath `@aiqfome-org/geraldo-ui/auth`)
+
+Módulo **opcional** (sem `lit`): monta a URL do Magalu ID, o `redirect_uri` do Geraldo, escuta `postMessage` (`authCode` / `magaluAuthDone`) e abre o popup. **Não** troca `code` por token no browser — use o seu backend com `client_secret` (ver guia de parceiros).
+
+```ts
+import {
+  buildGeraldoOAuthRedirectUri,
+  buildMagaluAuthorizeUrl,
+  openMagaluLoginWindow,
+  parseAllowedOrigins,
+  subscribeMagaluAuthMessages,
+} from '@aiqfome-org/geraldo-ui/auth';
+
+const unsubscribe = subscribeMagaluAuthMessages(
+  (msg) => {
+    if (msg.kind === 'authCode') {
+      // POST msg.code + redirectUri para o seu servidor
+    }
+  },
+  { allowedOrigins: parseAllowedOrigins('https://geraldo-restaurantes.aiqfome.com,http://localhost:5175') }
+);
+
+const url = buildMagaluAuthorizeUrl({
+  clientId: '…',
+  redirectUri: buildGeraldoOAuthRedirectUri(),
+  scopes: ['aqf:store:read'],
+});
+openMagaluLoginWindow(url);
+unsubscribe();
+```
+
+**Documentação do fluxo** (portal, redirects, homologação): repositório **docs-loja-apps**, ficheiro `GUIA_PARCEIROS_LOJA_DE_APPS.md` (quando clonado ao lado deste repo: `../docs-loja-apps/`).
+
 ## Uso rápido
 
 1. Importe os **tokens** (CSS variables) uma vez na raiz do app (antes de qualquer componente).
@@ -100,11 +133,32 @@ npm run example:pedidos
 # ou: cd examples/pedidos-app && npm install && npm run dev
 ```
 
+## Exemplo lojista-pedidos (API V2 real)
+
+[examples/lojista-pedidos-app](examples/lojista-pedidos-app) — lista lojas e pedidos com token Bearer, proxy Vite e subpath **`@aiqfome-org/geraldo-ui/auth`** (popup Magalu opcional). Ver `env.sample` nessa pasta.
+
+```bash
+npm run example:lojista-pedidos
+# ou: cd examples/lojista-pedidos-app && npm install && npm run dev
+```
+
+## Exemplo mínimo (Magalu + postMessage)
+
+[examples/magalu-auth-minimal](examples/magalu-auth-minimal) — botão que abre o login Magalu e regista mensagens no ecrã (sem backend). Útil para validar `allowedOrigins` e o fluxo documentado no guia Loja de APPs.
+
+```bash
+npm run example:magalu-auth
+# ou: cd examples/magalu-auth-minimal && npm install && npm run dev
+```
+
+Defina `VITE_MAGALU_CLIENT_ID` no `.env` local (copia `env.sample` para `.env` nessa pasta).
+
 ## Desenvolvimento
 
 ```bash
 npm install
 npm run build
+npm test
 npm run storybook
 ```
 
