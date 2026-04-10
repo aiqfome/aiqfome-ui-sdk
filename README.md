@@ -125,6 +125,11 @@ npm run example:pedidos
 pnpm install
 pnpm run build
 pnpm run storybook
+
+# Para executar os projetos de exemplo:
+pnpm example:pedidos # web components
+pnpm example:pedidos-react # react + web components
+pnpm example:pedidos-react-tailwind # react + tailwind
 ```
 
 O repositório usa **Gitflow**: integração em **`develop`**, releases estáveis em **`main`**. Detalhes (feature / release / hotfix) em [CONTRIBUTING.md](./CONTRIBUTING.md).
