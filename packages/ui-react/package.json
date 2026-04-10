@@ -1,0 +1,57 @@
+{
+  "name": "@aiqfome-sdk/ui-react",
+  "version": "0.1.0",
+  "description": "React wrappers for Geraldo Lit web components",
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "vite build",
+    "prepack": "pnpm run build"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aiqfome/aiqfome-ui-sdk.git",
+    "directory": "packages/ui-react"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "engines": {
+    "node": ">=24"
+  },
+  "peerDependencies": {
+    "@aiqfome-sdk/themes": "^0.1.0",
+    "@aiqfome-sdk/ui-lit": "^0.1.0",
+    "lit": "^3.2.0",
+    "react": "^18.0.0 || ^19.0.0",
+    "react-dom": "^18.0.0 || ^19.0.0"
+  },
+  "dependencies": {
+    "@lit/react": "^1.0.0"
+  },
+  "devDependencies": {
+    "@aiqfome-sdk/themes": "workspace:*",
+    "@aiqfome-sdk/ui-lit": "workspace:*",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "lit": "^3.2.1",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "typescript": "^5.7.3",
+    "vite": "^6.2.0",
+    "vite-plugin-dts": "^4.5.0"
+  }
+}

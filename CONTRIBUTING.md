@@ -38,7 +38,7 @@ Na branch `release/*`: só correções finas, bump de versão, changelog se houv
 1. PR **release → main**; após merge, tag `v0.2.0` em `main`
 2. Merge de `main` (ou da própria `release`) de volta em `develop` para não perder commits
 
-Publicação npm: após a release estável em `main`, use o fluxo descrito no [README](./README.md#publicação-no-npm-mantenedores) (ou release no GitHub com `NPM_TOKEN`).
+Publicação npm: após a release estável em `main`, use **pnpm** no monorepo (`pnpm publish -r`), conforme o [README](./README.md#publishing-maintainers) (ou release no GitHub com `NPM_TOKEN`). Faça bump de `version` em **cada** pacote `@aiqfome-sdk/*` que for publicado.
 
 ### `hotfix/*`
 

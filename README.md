@@ -1,73 +1,92 @@
-# Geraldo UI (`@aiqfome-org/geraldo-ui`)
+# Aiqfome SDK (`@aiqfome-sdk`)
 
-SDK de **Web Components** (Lit + TypeScript) com tokens do guia **Geraldo** para produtos aiqfome. Publicável no npm; consumível em qualquer stack web (React, Vue, Svelte, HTML estático).
+Monorepositório de **pacotes escopados** usando **pnpm workspace**, que auxilia o desenvolvimento de produtos seguindo o styleguide do `geraldo` no aiqfome.
+
+## Pacotes
+
+| Package                                      | Role                                                                 |
+| -------------------------------------------- | -------------------------------------------------------------------- |
+| [`@aiqfome-sdk/themes`](packages/themes)     | Tokens seguindo o styleguide do aiqfome para uso nos demais pacotes. |
+| [`@aiqfome-sdk/ui-lit`](packages/ui-lit)     | SDK de **Web Components** (Lit + TypeScript)                         |
+| [`@aiqfome-sdk/ui-react`](packages/ui-react) | Componentes usando Lit diretamente no react                          |
 
 ![Prévia: smoke test com o pacote via npm — botões, card, formulário, rádios e badges](docs/smoke-test-preview.png)
 
 ## Requisitos
 
-- Node 18+
-- `lit` como dependência do app (peer dependency deste pacote)
+- Node 24+
 
 ## Instalação
 
 ```bash
-npm install @aiqfome-org/geraldo-ui lit
+# Para web components
+npm install @aiqfome-sdk/ui-lit @aiqfome-sdk/themes
+
+# Para react
+npm install @aiqfome-sdk/ui-react @aiqfome-sdk/themes
 ```
 
-## Uso rápido
+## Uso rápido - Web Components - @aiqfome-sdk/ui-lit
 
 1. Importe os **tokens** (CSS variables) uma vez na raiz do app (antes de qualquer componente).
 2. Importe o bundle JS para **registrar** os custom elements.
 
-### Vite / bundlers
-
 ```ts
-import '@aiqfome-org/geraldo-ui/tokens.css';
-import '@aiqfome-org/geraldo-ui';
+// Inicializa as folhas de estilo do aiqfome
+import "@aiqfome-sdk/themes/tokens.css";
 ```
 
-### Fonte Ubuntu
-
-Inclua no HTML (recomendado):
-
-```html
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link
-  href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,400;0,500;0,700&display=swap"
-  rel="stylesheet"
-/>
-```
-
-### HTML declarativo
+E utilize no seu HTML ou React:
 
 ```html
 <geraldo-button variant="filled" color="primary">Salvar</geraldo-button>
 <geraldo-text variant="h3-section" weight="medium">Seção</geraldo-text>
 ```
 
-### React (exemplo)
+### Registro dos custom elements
+
+Os elementos **não** são registrados só por importar o pacote. Chame **uma vez** no browser antes de renderizar (idempotente):
+
+```ts
+import "@aiqfome-sdk/themes/tokens.css";
+import { setupAiqfomeUI } from "@aiqfome-sdk/ui-lit";
+
+setupAiqfomeUI();
+```
+
+## Uso rápido em React - @aiqfome-sdk/ui-react
+
+Uma vez no seu `main.tsx` (tokens CSS + registro; `defineGeraldoUI` e `setupAiqfomeUI` fazem o mesmo):
+
+```ts
+import "@aiqfome-sdk/themes/tokens.css";
+import { setupAiqfomeUI } from "@aiqfome-sdk/ui-react";
+
+setupAiqfomeUI();
+```
+
+E Crie seu componente usando os pacotes:
 
 ```tsx
-import '@aiqfome-org/geraldo-ui/tokens.css';
-import '@aiqfome-org/geraldo-ui';
+import { GeraldoButton } from "@aiqfome-sdk/ui-react";
 
-export function Example() {
-  return <geraldo-button variant="outline">OK</geraldo-button>;
+export function MyReactComponentExample() {
+  return (
+    <GeraldoButton
+      variant="outline"
+      color="secondary"
+      size="sm"
+      onClick={() => {
+        console.log("Hello!");
+      }}
+    >
+      Say hello
+    </GeraldoButton>
+  );
 }
 ```
 
 Declare os tipos JSX se necessário (ou use `react-jsx` com `IntrinsicElements`).
-
-## Registro dos custom elements
-
-Importar `@aiqfome-org/geraldo-ui` carrega os módulos dos componentes; o decorator `@customElement` do Lit registra cada tag. Para garantir registro explícito (idempotente), por exemplo após code-splitting parcial:
-
-```ts
-import { defineGeraldoUI } from '@aiqfome-org/geraldo-ui';
-defineGeraldoUI();
-```
 
 ## Ícones
 
@@ -79,21 +98,21 @@ Defina no ancestral (ex.: `<html data-geraldo-theme="dark">`) ou use a classe `.
 
 ## Componentes exportados
 
-| Tag                    | Descrição                          |
-| ---------------------- | ---------------------------------- |
-| `geraldo-button`       | CTA: `variant`, `color`, `size`, `loading` |
-| `geraldo-text`         | Tipografia: `variant`, `weight`, `as` |
-| `geraldo-badge`        | `tone` (primary, developer, …)     |
-| `geraldo-card`         | `radius`, `elevation`; slots `header`, default, `footer` |
-| `geraldo-text-field`   | `label`, `description`, `error`, eventos `geraldo-input` / `geraldo-change` |
-| `geraldo-checkbox`     | `checked`, `disabled`; `geraldo-change` |
-| `geraldo-radio-group`  | `value`, `name`, `legend`          |
-| `geraldo-radio`        | `value`, `checked`, `name`         |
-| `geraldo-switch`       | `checked`, `disabled`; `geraldo-change` |
+| Tag                   | Descrição                                                                   |
+| --------------------- | --------------------------------------------------------------------------- |
+| `geraldo-button`      | CTA: `variant`, `color`, `size`, `loading`                                  |
+| `geraldo-text`        | Tipografia: `variant`, `weight`, `as`                                       |
+| `geraldo-badge`       | `tone` (primary, developer, …)                                              |
+| `geraldo-card`        | `radius`, `elevation`; slots `header`, default, `footer`                    |
+| `geraldo-text-field`  | `label`, `description`, `error`, eventos `geraldo-input` / `geraldo-change` |
+| `geraldo-checkbox`    | `checked`, `disabled`; `geraldo-change`                                     |
+| `geraldo-radio-group` | `value`, `name`, `legend`                                                   |
+| `geraldo-radio`       | `value`, `checked`, `name`                                                  |
+| `geraldo-switch`      | `checked`, `disabled`; `geraldo-change`                                     |
 
 ## App de exemplo (pedidos)
 
-Listagem de pedidos em [examples/pedidos-app](examples/pedidos-app) usando **todos** os componentes do SDK. O Vite aponta `@aiqfome-org/geraldo-ui` para o código-fonte do repositório (alias), sem precisar publicar o pacote.
+Listagem de pedidos em [examples/pedidos-app](examples/pedidos-app) usando **todos** os componentes do SDK. O Vite aponta `@aiqfome-sdk/ui-lit` para o código-fonte do repositório (alias), sem precisar publicar o pacote.
 
 ```bash
 npm run example:pedidos
@@ -103,9 +122,14 @@ npm run example:pedidos
 ## Desenvolvimento
 
 ```bash
-npm install
-npm run build
-npm run storybook
+pnpm install
+pnpm run build
+pnpm run storybook
+
+# Para executar os projetos de exemplo:
+pnpm example:pedidos # web components
+pnpm example:pedidos-react # react + web components
+pnpm example:pedidos-react-tailwind # react + tailwind
 ```
 
 O repositório usa **Gitflow**: integração em **`develop`**, releases estáveis em **`main`**. Detalhes (feature / release / hotfix) em [CONTRIBUTING.md](./CONTRIBUTING.md).

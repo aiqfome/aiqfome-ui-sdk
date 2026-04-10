@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://aiqfome.com/schemas/geraldo-theme-default.json",
+  "title": "Geraldo default theme tokens",
+  "type": "object",
+  "required": ["light", "dark"],
+  "properties": {
+    "$schema": { "type": "string" },
+    "light": {
+      "type": "object",
+      "additionalProperties": { "type": "string" }
+    },
+    "dark": {
+      "type": "object",
+      "additionalProperties": { "type": "string" }
+    }
+  },
+  "additionalProperties": false
+}

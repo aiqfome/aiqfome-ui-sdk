@@ -1,0 +1,49 @@
+/**
+ * Tailwind v4 `@theme inline` — maps Geraldo CSS variables to Tailwind theme keys.
+ * Consumed by the themes build: emitted as `dist/tailwind.css` after `@import` of `geraldo-tokens.css`.
+ */
+
+@theme inline {
+  --font-sans: var(--geraldo-font-family);
+
+  --color-background: var(--geraldo-color-surface);
+  --color-foreground: var(--geraldo-color-text);
+  --color-muted: var(--geraldo-color-surface-muted);
+  --color-muted-foreground: var(--geraldo-color-text-muted);
+  --color-border: var(--geraldo-color-border);
+  --color-input: var(--geraldo-color-border);
+
+  --color-primary: var(--geraldo-color-primary-400);
+  --color-primary-foreground: var(--geraldo-color-primary-900);
+  --color-primary-muted: var(--geraldo-color-primary-bg);
+
+  --color-secondary: var(--geraldo-color-secondary-400);
+  --color-secondary-foreground: var(--geraldo-color-secondary-900);
+  --color-secondary-muted: var(--geraldo-color-secondary-bg);
+
+  --color-destructive: var(--geraldo-color-danger-400);
+  --color-destructive-foreground: var(--geraldo-color-neutral-0);
+
+  --color-success: var(--geraldo-color-success-400);
+  --color-warning: var(--geraldo-color-warning-400);
+  --color-info: var(--geraldo-color-info-400);
+
+  --radius-sm: var(--geraldo-radius-element);
+  --radius-md: var(--geraldo-radius-box-inner);
+  --radius-lg: var(--geraldo-radius-box-outer);
+  --radius-full: var(--geraldo-radius-button);
+
+  --shadow-sm: var(--geraldo-shadow-low);
+  --shadow-md: var(--geraldo-shadow-mid);
+  --shadow-lg: var(--geraldo-shadow-high);
+  --shadow-xl: var(--geraldo-shadow-upper);
+
+  --spacing-geraldo-1: var(--geraldo-space-1);
+  --spacing-geraldo-2: var(--geraldo-space-2);
+  --spacing-geraldo-3: var(--geraldo-space-3);
+  --spacing-geraldo-4: var(--geraldo-space-4);
+  --spacing-geraldo-5: var(--geraldo-space-5);
+  --spacing-geraldo-6: var(--geraldo-space-6);
+  --spacing-geraldo-7: var(--geraldo-space-7);
+  --spacing-geraldo-8: var(--geraldo-space-8);
+}

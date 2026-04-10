@@ -1,0 +1,44 @@
+{
+  "name": "@aiqfome-sdk/themes",
+  "version": "0.1.0",
+  "description": "Geraldo design tokens (JSON, CSS variables, Tailwind v4 theme bundle)",
+  "type": "module",
+  "sideEffects": [
+    "*.css",
+    "./dist/*.css"
+  ],
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./tokens.css": "./dist/geraldo-tokens.css",
+    "./tailwind.css": "./dist/tailwind.css",
+    "./themes/default.json": "./themes/default.json",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "dist",
+    "themes",
+    "tailwind"
+  ],
+  "scripts": {
+    "build": "node scripts/build-tokens.mjs && tsc -p tsconfig.json",
+    "prepack": "pnpm run build"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aiqfome/aiqfome-ui-sdk.git",
+    "directory": "packages/themes"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "engines": {
+    "node": ">=24"
+  },
+  "devDependencies": {
+    "typescript": "^5.7.3"
+  }
+}
