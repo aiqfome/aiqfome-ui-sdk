@@ -1,0 +1,25 @@
+{
+  "name": "@aiqfome-sdk/storybook",
+  "private": true,
+  "engines": {
+    "node": ">=24"
+  },
+  "scripts": {
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build"
+  },
+  "dependencies": {
+    "@aiqfome-sdk/themes": "workspace:*",
+    "@aiqfome-sdk/ui-lit": "workspace:*"
+  },
+  "devDependencies": {
+    "@storybook/addon-docs": "^8.6.18",
+    "@storybook/addon-essentials": "^8.6.18",
+    "@storybook/web-components": "^8.6.18",
+    "@storybook/web-components-vite": "^8.6.18",
+    "lit": "^3.2.1",
+    "storybook": "^8.6.18",
+    "typescript": "^5.7.3",
+    "vite": "^6.2.0"
+  }
+}

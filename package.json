@@ -1,69 +1,18 @@
 {
-  "name": "@aiqfome-org/geraldo-ui",
-  "version": "0.1.2",
-  "description": "Geraldo UI — Web Components design system for aiqfome (Lit + design tokens)",
-  "type": "module",
-  "sideEffects": [
-    "*.css",
-    "./dist/*.css"
-  ],
-  "main": "./dist/index.js",
-  "module": "./dist/index.js",
-  "types": "./dist/index.d.ts",
-  "exports": {
-    ".": {
-      "types": "./dist/index.d.ts",
-      "import": "./dist/index.js"
-    },
-    "./tokens.css": "./dist/geraldo-tokens.css",
-    "./package.json": "./package.json"
-  },
-  "files": [
-    "dist",
-    "docs",
-    "LICENSE"
-  ],
-  "engines": {
-    "node": ">=18"
-  },
+  "name": "@aiqfome-sdk/workspace",
+  "private": true,
+  "packageManager": "pnpm@9.15.4",
   "scripts": {
-    "build": "vite build && cp src/tokens/geraldo-tokens.css dist/geraldo-tokens.css",
-    "prepublishOnly": "npm run build",
-    "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build",
-    "example:pedidos": "npm run dev --prefix examples/pedidos-app"
+    "build": "pnpm -r --filter './packages/*' run build",
+    "test": "pnpm -r --filter '@aiqfome-sdk/*' run test --if-present",
+    "lint": "pnpm -r run lint --if-present",
+    "storybook": "pnpm --filter @aiqfome-sdk/storybook run storybook",
+    "build-storybook": "pnpm --filter @aiqfome-sdk/storybook run build-storybook",
+    "example:pedidos": "pnpm --filter pedidos-app-lit run dev",
+    "example:pedidos-react": "pnpm --filter pedidos-app-react run dev",
+    "example:pedidos-react-tailwind": "pnpm --filter pedidos-app-react-tailwind run dev"
   },
-  "keywords": [
-    "design-system",
-    "web-components",
-    "lit",
-    "aiqfome",
-    "geraldo"
-  ],
-  "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/aiqfome/aiqfome-ui-sdk.git"
-  },
-  "homepage": "https://github.com/aiqfome/aiqfome-ui-sdk#readme",
-  "bugs": {
-    "url": "https://github.com/aiqfome/aiqfome-ui-sdk/issues"
-  },
-  "publishConfig": {
-    "access": "public"
-  },
-  "peerDependencies": {
-    "lit": "^3.2.0"
-  },
-  "devDependencies": {
-    "@storybook/addon-essentials": "^8.6.18",
-    "@storybook/addon-docs": "^8.6.18",
-    "@storybook/web-components": "^8.6.18",
-    "@storybook/web-components-vite": "^8.6.18",
-    "lit": "^3.2.1",
-    "storybook": "^8.6.18",
-    "typescript": "^5.7.3",
-    "vite": "^6.2.0",
-    "vite-plugin-dts": "^4.5.0"
+  "engines": {
+    "node": ">=24"
   }
 }

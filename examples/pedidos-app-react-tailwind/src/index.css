@@ -1,0 +1,4 @@
+@import '@aiqfome-sdk/themes/tailwind.css';
+@import 'tailwindcss';
+
+@source './**/*.{ts,tsx}';

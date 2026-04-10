@@ -1,6 +1,7 @@
 node_modules
 dist
 examples/**/dist
+draft
 storybook-static
 *.log
 .DS_Store
