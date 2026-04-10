@@ -55,6 +55,17 @@ Publicação npm: após a release estável em `main`, use o fluxo descrito no [R
 2. **Proteção:** proteger `main` (reviews obrigatórios, sem push direto) e, se quiser, `develop`.
 3. **Releases:** criar *GitHub Release* a partir das tags em `main` quando publicar versão.
 
+## Checks locais
+
+Antes de abrir PR:
+
+```bash
+npm test
+npm run build
+npm run build-storybook
+# opcional: exemplos em examples/* (ex.: npm run example:lojista-pedidos)
+```
+
 ## Ferramenta opcional: git-flow
 
 Quem quiser comandos auxiliares pode instalar [git-flow](https://github.com/nvie/gitflow) e rodar `git flow init` aceitando os padrões (`main` + `develop`). Não é obrigatório: o mesmo fluxo vale com branches criadas manualmente.

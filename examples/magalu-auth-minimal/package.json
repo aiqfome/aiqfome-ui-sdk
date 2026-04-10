@@ -1,0 +1,16 @@
+{
+  "name": "magalu-auth-minimal-exemplo",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "description": "Exemplo mínimo: Magalu ID + postMessage com @aiqfome-org/geraldo-ui/auth (fonte local)",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "typescript": "^5.7.3",
+    "vite": "^6.2.0"
+  }
+}

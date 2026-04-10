@@ -1,0 +1,87 @@
+:root {
+  color-scheme: light dark;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: var(--geraldo-font-family, Ubuntu, system-ui, sans-serif);
+  background: var(--geraldo-color-surface-canvas, #f5f5f5);
+}
+
+.shell {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 1.5rem;
+}
+
+.top {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.token-card {
+  margin-bottom: 1.5rem;
+}
+
+.token-card__row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  align-items: flex-end;
+}
+
+.token-card label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  font-size: 0.875rem;
+}
+
+.token-card input[type='password'],
+.token-card input[type='text'] {
+  min-width: 16rem;
+  padding: 0.5rem 0.65rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font: inherit;
+}
+
+.err {
+  color: var(--geraldo-color-text-danger, #b00020);
+  font-size: 0.9rem;
+  margin-top: 0.5rem;
+}
+
+.pre {
+  background: #1e1e1e;
+  color: #eee;
+  padding: 1rem;
+  border-radius: 8px;
+  overflow: auto;
+  font-size: 0.8rem;
+  max-height: 20rem;
+}
+
+.pedido-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.pedido-card__head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.pedido-card__body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
