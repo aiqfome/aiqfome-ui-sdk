@@ -1,7 +1,7 @@
 {
   "name": "@aiqfome-org/geraldo-ui",
-  "version": "0.2.0",
-  "description": "Geraldo UI — Web Components design system for aiqfome (Lit + design tokens)",
+  "version": "0.3.0",
+  "description": "Geraldo UI — Web Components (Lit) + design tokens for aiqfome; optional @aiqfome-org/geraldo-ui/auth (Magalu ID + Geraldo OAuth/postMessage helpers, browser-only)",
   "type": "module",
   "sideEffects": [
     "*.css",
@@ -41,11 +41,15 @@
     "example:lojista-pedidos": "npm run dev --prefix examples/lojista-pedidos-app"
   },
   "keywords": [
+    "aiqfome",
+    "geraldo",
     "design-system",
     "web-components",
     "lit",
-    "aiqfome",
-    "geraldo"
+    "magalu",
+    "oauth",
+    "marketplace",
+    "lojista"
   ],
   "license": "MIT",
   "repository": {

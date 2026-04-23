@@ -22,6 +22,15 @@ export type { SubscribeMagaluAuthMessagesOptions } from './messages.js';
 
 export { openMagaluLoginWindow } from './window.js';
 
+export {
+  createGeraldoMagaluAuth,
+} from './createGeraldoMagaluAuth.js';
+export type {
+  CreateGeraldoMagaluAuthOptions,
+  GeraldoMagaluAuthController,
+  GeraldoMagaluAuthOpenLoginResult,
+} from './createGeraldoMagaluAuth.js';
+
 export type {
   BuildMagaluAuthorizeUrlOptions,
   ExchangeMagaluTokenRequestBody,
