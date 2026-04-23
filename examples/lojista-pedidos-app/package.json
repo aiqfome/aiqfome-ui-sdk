@@ -1,15 +1,16 @@
 {
   "name": "lojista-pedidos-app-exemplo",
   "private": true,
-  "version": "0.1.0",
+  "version": "0.2.0",
   "type": "module",
-  "description": "Exemplo: listar pedidos (API V2) + Geraldo UI + auth helpers — fonte do SDK via alias Vite",
+  "description": "Exemplo: API V2 + Geraldo UI + auth (@aiqfome-org/geraldo-ui 0.3.x, preset createGeraldoMagaluAuth). Em dev no repo usa alias Vite para src/; dependência file:../.. alinha versão ao package.json do SDK.",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview"
   },
   "dependencies": {
+    "@aiqfome-org/geraldo-ui": "file:../..",
     "lit": "^3.2.1"
   },
   "devDependencies": {

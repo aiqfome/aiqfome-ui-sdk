@@ -2,11 +2,9 @@ import { html, render } from 'lit';
 import '@aiqfome-org/geraldo-ui/tokens.css';
 import { defineGeraldoUI } from '@aiqfome-org/geraldo-ui';
 import {
-  buildGeraldoOAuthRedirectUri,
-  buildMagaluAuthorizeUrl,
-  openMagaluLoginWindow,
+  createGeraldoMagaluAuth,
   parseAllowedOrigins,
-  subscribeMagaluAuthMessages,
+  type MagaluAuthMessage,
 } from '@aiqfome-org/geraldo-ui/auth';
 
 import { extractOrderRows, fetchOrdersSearch, fetchStores, type StoreOption } from './api.js';
@@ -41,40 +39,35 @@ const postMessageOrigins = parseAllowedOrigins(
   )
 );
 
-let unsubAuth: (() => void) | undefined;
-
-function ensureAuthListener(): void {
-  if (unsubAuth) return;
-  unsubAuth = subscribeMagaluAuthMessages(
-    (msg) => {
-      if (msg.kind === 'authCode') {
-        state.error =
-          'Code recebido: troca no teu backend (client_secret) e cola o access_token acima. Este demo nao tem servidor OAuth.';
-        ui();
-        return;
-      }
-      state.error = '';
+const magaluAuth = createGeraldoMagaluAuth({
+  clientId: () => state.magaluClientId,
+  scopes: ['aqf:store:read', 'aqf:order:read'],
+  allowedOrigins: postMessageOrigins,
+  onMessage(msg: MagaluAuthMessage) {
+    if (msg.kind === 'authCode') {
+      state.error =
+        'Code recebido: troca no teu backend (client_secret) e cola o access_token acima. Este demo nao tem servidor OAuth.\n\n' +
+        msg.code;
       ui();
-    },
-    { allowedOrigins: postMessageOrigins }
-  );
-}
+      return;
+    }
+    state.error = '';
+    ui();
+  },
+});
 
 function openMagalu(): void {
-  ensureAuthListener();
-  if (!state.magaluClientId) {
-    state.error = 'Define VITE_MAGALU_CLIENT_ID no .env para o popup Magalu.';
+  const result = magaluAuth.openLogin();
+  if (!result.ok) {
+    if (result.reason === 'missing_client_id') {
+      state.error = 'Define VITE_MAGALU_CLIENT_ID no .env para o popup Magalu.';
+    } else {
+      state.error = 'Popup bloqueado.';
+    }
     ui();
     return;
   }
-  const redirectUri = buildGeraldoOAuthRedirectUri();
-  const url = buildMagaluAuthorizeUrl({
-    clientId: state.magaluClientId,
-    redirectUri,
-    scopes: ['aqf:store:read', 'aqf:order:read'],
-  });
-  const w = openMagaluLoginWindow(url);
-  if (!w) state.error = 'Popup bloqueado.';
+  state.error = '';
   ui();
 }
 

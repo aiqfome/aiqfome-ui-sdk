@@ -1,10 +1,4 @@
-import {
-  buildGeraldoOAuthRedirectUri,
-  buildMagaluAuthorizeUrl,
-  openMagaluLoginWindow,
-  parseAllowedOrigins,
-  subscribeMagaluAuthMessages,
-} from '@aiqfome-org/geraldo-ui/auth';
+import { createGeraldoMagaluAuth, parseAllowedOrigins } from '@aiqfome-org/geraldo-ui/auth';
 
 const clientId = import.meta.env.VITE_MAGALU_CLIENT_ID ?? '';
 
@@ -18,34 +12,34 @@ function log(text: string): void {
   if (el) el.textContent = text;
 }
 
-subscribeMagaluAuthMessages(
-  (msg) => {
+const magaluAuth = createGeraldoMagaluAuth({
+  clientId,
+  scopes: ['aqf:store:read'],
+  allowedOrigins,
+  onMessage(msg) {
     if (msg.kind === 'authCode') {
       log(
-        `authCode recebido.\nEnviar ao backend (POST) com o mesmo redirect_uri usado no authorize:\ncode=${msg.code}\nredirect_uri=${buildGeraldoOAuthRedirectUri()}`
+        `authCode recebido.\nEnviar ao backend (POST) com o mesmo redirect_uri usado no authorize:\ncode=${msg.code}\nredirect_uri=${magaluAuth.redirectUri}`
       );
       return;
     }
     log('magaluAuthDone (popup fechou / fluxo local).');
   },
-  { allowedOrigins }
-);
+});
 
 document.querySelector('#login')?.addEventListener('click', () => {
   if (!clientId || clientId === 'REPLACE_ME') {
     log('Define VITE_MAGALU_CLIENT_ID no ficheiro .env (copia env.sample para .env).');
     return;
   }
-  const redirectUri = buildGeraldoOAuthRedirectUri();
-  const url = buildMagaluAuthorizeUrl({
-    clientId,
-    redirectUri,
-    scopes: ['aqf:store:read'],
-  });
-  const w = openMagaluLoginWindow(url);
-  if (!w) {
-    log('Popup bloqueado — permite popups para este site.');
-  } else {
-    log('Popup aberto. Conclui o login no Magalu…');
+  const result = magaluAuth.openLogin();
+  if (!result.ok) {
+    if (result.reason === 'missing_client_id') {
+      log('Client ID em falta.');
+    } else {
+      log('Popup bloqueado — permite popups para este site.');
+    }
+    return;
   }
+  log('Popup aberto. Conclui o login no Magalu…');
 });
